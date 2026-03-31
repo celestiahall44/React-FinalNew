@@ -1,0 +1,53 @@
+.moviecards {
+	width: min(1200px, 92%);
+	margin: 32px auto;
+	display: flex;
+	flex-wrap: nowrap;
+	gap: 20px;
+	overflow-x: auto;
+	overflow-y: hidden;
+	overscroll-behavior-x: contain;
+	overscroll-behavior-y: contain;
+	touch-action: pan-x;
+	padding-bottom: 10px;
+	scrollbar-width: thin;
+}
+
+.movie-card {
+	flex: 0 0 240px;
+	background-color: #111;
+	border: 1px solid #2b2b2b;
+	border-radius: 12px;
+	overflow: hidden;
+	color: #fff;
+	cursor: pointer;
+	transition: transform 0.18s ease, border-color 0.18s ease;
+}
+
+.movie-card:hover,
+.movie-card:focus-visible {
+	transform: translateY(-4px);
+	border-color: #ce5829;
+	outline: none;
+}
+
+.movie-poster {
+	width: 100%;
+	aspect-ratio: 2 / 3;
+	object-fit: cover;
+	display: block;
+}
+
+.movie-title {
+	font-size: 16px;
+	padding: 12px;
+	margin: 0;
+}
+
+.moviecards-status {
+	width: min(1200px, 92%);
+	margin: 32px auto;
+	text-align: center;
+	color: #f3f3f3;
+	font-size: 18px;
+}

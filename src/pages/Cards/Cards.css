@@ -1,0 +1,74 @@
+.cards-page {
+	min-height: 100vh;
+	background: #111;
+	color: #fff;
+	padding: 24px 6%;
+}
+
+.cards-back {
+	background: transparent;
+	color: #fff;
+	text-decoration: none;
+	border: 1px solid #ce5829;
+	padding: 8px 12px;
+	border-radius: 8px;
+	display: inline-block;
+	margin-bottom: 20px;
+	cursor: pointer;
+	font: inherit;
+}
+
+.cards-status {
+	font-size: 18px;
+}
+
+.movie-details-card {
+	display: grid;
+	grid-template-columns: minmax(220px, 300px) 1fr;
+	gap: 24px;
+	align-items: start;
+}
+
+.movie-details-poster {
+	width: 100%;
+	border-radius: 12px;
+	border: 1px solid #2b2b2b;
+}
+
+.movie-details-content h1 {
+	margin: 0 0 12px;
+}
+
+.movie-details-content > p {
+	margin: 0 0 16px;
+	color: #e6e6e6;
+	line-height: 1.6;
+}
+
+.movie-details-grid {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(220px, 1fr));
+	gap: 10px 16px;
+}
+
+.movie-details-grid p {
+	margin: 0;
+}
+
+.movie-details-grid strong {
+	color: #ce5829;
+}
+
+@media (max-width: 900px) {
+	.movie-details-card {
+		grid-template-columns: 1fr;
+	}
+
+	.movie-details-poster {
+		max-width: 320px;
+	}
+
+	.movie-details-grid {
+		grid-template-columns: 1fr;
+	}
+}

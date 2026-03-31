@@ -1,17 +1,48 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+const OMDB_API_URL = "https://www.omdbapi.com";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+function getApiKey() {
+  return import.meta.env.VITE_OMDB_API_KEY;
+}
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+export async function searchMovies(query) {
+  const apiKey = getApiKey();
+  if (!apiKey) {
+    throw new Error("Missing VITE_OMDB_API_KEY in .env");
+  }
+
+  const searchRes = await fetch(
+    `${OMDB_API_URL}?apikey=${apiKey}&s=${encodeURIComponent(query)}`
+  );
+  const searchData = await searchRes.json();
+
+  if (searchData.Response !== "True") {
+    return [];
+  }
+
+  const detailsPromises = searchData.Search.slice(0, 8).map(async (movie) => {
+    const detailRes = await fetch(
+      `${OMDB_API_URL}?apikey=${apiKey}&i=${movie.imdbID}&plot=short`
+    );
+    return detailRes.json();
+  });
+
+  return Promise.all(detailsPromises);
+}
+
+export async function getMovieById(imdbID) {
+  const apiKey = getApiKey();
+  if (!apiKey) {
+    throw new Error("Missing VITE_OMDB_API_KEY in .env");
+  }
+
+  const detailRes = await fetch(
+    `${OMDB_API_URL}?apikey=${apiKey}&i=${encodeURIComponent(imdbID)}&plot=full`
+  );
+  const detailData = await detailRes.json();
+
+  if (detailData.Response !== "True") {
+    throw new Error(detailData.Error || "Movie details not found");
+  }
+
+  return detailData;
+}
