@@ -5,6 +5,7 @@ import logo from '../../assets/logo.png'
 import profile_img from '../../assets/profile_img.png'
 import caret_icon from '../../assets/caret_icon.svg'
 import { logout } from '../../firebase'
+import { showLinkError } from '../../utils/showLinkError'
 
 
 function Navbar() {
@@ -19,9 +20,9 @@ function Navbar() {
         <div className="navbar-left">
             <img src= {logo} alt="logo" />
             <ul>
-                <li>Home</li>
-                <li>Explore</li>
-                <li>Contact</li>
+                <li onClick={showLinkError}>Home</li>
+                <li onClick={showLinkError}>Explore</li>
+                <li onClick={showLinkError}>Contact</li>
             </ul>
         </div>
         <div className="navbar-right">
