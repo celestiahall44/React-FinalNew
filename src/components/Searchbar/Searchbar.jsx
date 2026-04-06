@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './Searchbar.css'
 
-function Searchbar({ onSearch, initialQuery = '' }) {
+function Searchbar({ onSearch, initialQuery = '', isLoading = false }) {
   const [query, setQuery] = useState('')
 
   useEffect(() => {
@@ -9,6 +9,10 @@ function Searchbar({ onSearch, initialQuery = '' }) {
   }, [initialQuery])
 
   const handleSubmit = () => {
+    if (isLoading) {
+      return
+    }
+
     if (onSearch) {
       onSearch(query)
     }
@@ -31,10 +35,26 @@ function Searchbar({ onSearch, initialQuery = '' }) {
             className="search-input"
             placeholder="What would you like to watch?"
             value={query}
-            onChange={(event) => setQuery(event.target.value)}
+            onChange={(event) => {
+              const nextQuery = event.target.value
+              setQuery(nextQuery)
+
+              if (!nextQuery.trim() && onSearch) {
+                onSearch('')
+              }
+            }}
             onKeyDown={handleKeyDown}
+            disabled={isLoading}
           />
-          <button id="searchButton" className="search-button btn__hover-effect" onClick={handleSubmit}>Search</button>
+          <button
+            id="searchButton"
+            className="search-button btn__hover-effect"
+            onClick={handleSubmit}
+            disabled={isLoading}
+            aria-busy={isLoading}
+          >
+            {isLoading ? 'Searching...' : 'Search'}
+          </button>
         </div>
     </div>
   )

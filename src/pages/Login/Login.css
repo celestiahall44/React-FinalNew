@@ -1,21 +1,25 @@
 .login{
     height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-image: linear-gradient(#0000007e,#0000007e),url('src/assets/videophotography.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
     padding: 20px 8%;
+    box-sizing: border-box;
 }
-.login-logo{
-    width: 120px;
-}
+
 .login-form{
    width: 100%;
    max-width: 450px;
    background: rgba(231, 218, 218, 0.8);
    border-radius: 4px;
    padding: 60px;
-   margin: auto;
+   margin: 0;
+   box-sizing: border-box;
+   
 }
 .login-form h1{
     font-size: 32px;

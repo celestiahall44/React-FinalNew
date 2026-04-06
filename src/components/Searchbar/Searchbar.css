@@ -42,4 +42,10 @@
     cursor: pointer;
     outline: none;
     text-transform: uppercase;
-}   
+}
+
+.search-input:disabled,
+.search-button:disabled {
+    opacity: 0.7;
+    cursor: wait;
+}

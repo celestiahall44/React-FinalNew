@@ -22,7 +22,6 @@ const Login = () => {
 
   return (
     <div className="login">
-      <img className="login-logo" src={logo} alt="logo" />
       <div className="login-form">
         <h1>{signState}</h1>
         <form>

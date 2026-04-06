@@ -34,6 +34,7 @@ function Home() {
   const [searchQuery, setSearchQuery] = useState(savedState.searchQuery || '')
   const [isSortOpen, setIsSortOpen] = useState(false)
   const sortMenuRef = useRef(null)
+  const hasActiveSearch = Boolean(searchQuery.trim())
 
   useEffect(() => {
     const handleOutsideClick = (event) => {
@@ -83,7 +84,7 @@ function Home() {
 
     if (!query.trim()) {
       setMovies([])
-      setError('Type a movie title to search.')
+      setError('')
       return
     }
 
@@ -111,9 +112,9 @@ function Home() {
   return (
     <div className="home">
       <Navbar />
-      <div className="camera">
+      <div className={`camera ${hasActiveSearch ? 'camera--compact' : ''}`}>
         <img src={Camera} alt="" className="banner-img"/>
-        <Searchbar onSearch={handleSearch} initialQuery={searchQuery} />
+        <Searchbar onSearch={handleSearch} initialQuery={searchQuery} isLoading={isLoading} />
       </div>
       {movies.length > 0 && !isLoading && !error ? (
         <section className="results-toolbar">
