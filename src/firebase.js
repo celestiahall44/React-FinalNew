@@ -3,6 +3,7 @@ import { getAnalytics } from "firebase/analytics";
 import { getAuth,
         createUserWithEmailAndPassword,
         signInWithEmailAndPassword, 
+    signInAnonymously,
         signOut} from "firebase/auth";
 import { addDoc,
         collection,
@@ -49,6 +50,15 @@ const login = async (email, password) => {
     }
 }
 
+const guestLogin = async () => {
+    try {
+        await signInAnonymously(auth);
+    } catch (error) {
+        console.log(error);
+        alert(error);
+    }
+}
+
 const logout = async () => {
     try {
         await signOut(auth);
@@ -58,7 +68,7 @@ const logout = async () => {
     }
 }
 
-export { auth, db, signup, login, logout };
+export { auth, db, signup, login, guestLogin, logout };
 
 
 

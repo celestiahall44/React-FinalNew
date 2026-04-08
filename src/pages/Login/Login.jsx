@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './Login.css'
 import logo from '../../assets/logo.png'
-import { login, signup } from '../../firebase'
+import { guestLogin, login, signup } from '../../firebase'
 
 const Login = () => {
 
@@ -19,6 +19,11 @@ const Login = () => {
     }
   }
 
+  const handleGuestLogin = async (event) => {
+    event.preventDefault();
+    await guestLogin();
+  }
+
 
   return (
     <div className="login">
@@ -29,6 +34,9 @@ const Login = () => {
           <input value={email} onChange={(e) => {setEmail(e.target.value)}} type="email" placeholder="Email"/>
           <input value={password} onChange={(e) => {setPassword(e.target.value)}} type="password" placeholder="Password" />
           <button onClick={user_auth} type="submit">{signState}</button>
+          {signState === "Sign In" ? (
+            <button className="guest-button" onClick={handleGuestLogin} type="button">Sign In as Guest</button>
+          ) : null}
           <div className="form-help">
             <div className="remember">
               <input type="checkbox"></input>
