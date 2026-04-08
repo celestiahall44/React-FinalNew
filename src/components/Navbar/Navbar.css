@@ -70,3 +70,13 @@
 .navbar-profile:hover .dropdown{
     display: block;
 }
+
+@media (max-width: 500px) {
+    .navbar-left ul {
+        display: none;
+    }
+
+    .navbar-left {
+        gap: 12px;
+    }
+}

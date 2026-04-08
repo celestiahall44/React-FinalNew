@@ -43,3 +43,24 @@
     margin: 0;
     text-align: center;
 }
+
+@media (max-width: 500px) {
+    .footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        z-index: 30;
+        height: 160px;
+        padding: 8px 10px 12px;
+        box-sizing: border-box;
+    }
+
+    .footer-logo {
+        width: 96px;
+    }
+
+    .footer-link--anchor {
+        font-size: 14px;
+        margin: 0 8px;
+    }
+}
