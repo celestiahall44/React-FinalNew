@@ -3,6 +3,8 @@ import './Login.css'
 import logo from '../../assets/logo.png'
 import { guestLogin, login, signup } from '../../firebase'
 
+const HOME_SEARCH_STATE_KEY = 'flix-home-search-state'
+
 const Login = () => {
 
   const[signState, setSignState] = useState("Sign In")
@@ -21,6 +23,11 @@ const Login = () => {
 
   const handleGuestLogin = async (event) => {
     event.preventDefault();
+
+    if (typeof window !== 'undefined') {
+      window.sessionStorage.removeItem(HOME_SEARCH_STATE_KEY)
+    }
+
     await guestLogin();
   }
 
