@@ -1,11 +1,18 @@
+const OMDB_API_KEY = "1026992b";
 const OMDB_API_URL = "https://www.omdbapi.com";
+const OMDB_API_KEY_FALLBACK = "1026992b";
 
 function getApiKey() {
-  return import.meta.env.VITE_OMDB_API_KEY;
+  return import.meta.env.VITE_OMDB_API_KEY || OMDB_API_KEY_FALLBACK;
+}
+
+function getApiUrl() {
+  return import.meta.env.VITE_OMDB_API_URL;
 }
 
 export async function searchMovies(query) {
   const apiKey = getApiKey();
+  const apiUrl = getApiUrl();
   if (!apiKey) {
     throw new Error("Missing VITE_OMDB_API_KEY in .env");
   }
