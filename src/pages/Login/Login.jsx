@@ -1,9 +1,12 @@
 import React, { useState } from 'react'
 import './Login.css'
-import logo from '../../assets/logo.png'
+import loginBackground from '../../assets/videophotography.jpg'
 import { guestLogin, login, signup } from '../../firebase'
 
 const HOME_SEARCH_STATE_KEY = 'flix-home-search-state'
+const LOGIN_BACKGROUND_STYLE = {
+  backgroundImage: `linear-gradient(#0000007e,#0000007e), url(${loginBackground})`,
+}
 
 const Login = () => {
 
@@ -33,7 +36,7 @@ const Login = () => {
 
 
   return (
-    <div className="login">
+    <div className="login" style={LOGIN_BACKGROUND_STYLE}>
       <div className="login-form">
         <h1>{signState}</h1>
         <form>
